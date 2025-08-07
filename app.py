@@ -11,13 +11,13 @@ st.set_page_config(
 
 # ✅ Judul dan deskripsi aplikasi
 st.markdown("""
-# 🚗 Perbandingan Harga Mobil Baru Antar Lokasi
-Selamat datang!  
-Gunakan sidebar di kiri untuk memilih model, varian, dan lokasi perbandingan harga **OTR** (On The Road).  
-""")
+<h1 style='font-size: 40px;'>🚗 Perbandingan Harga Mobil Baru Antar Lokasi</h1>
+<p style='font-size: 20px;'>Selamat datang! Gunakan sidebar di kiri untuk memilih model, varian, dan lokasi perbandingan harga <strong>OTR</strong> (On The Road).</p>
+""", unsafe_allow_html=True)
 
 # ✅ Sidebar untuk input
 st.sidebar.header("🔧 Filter")
+
 # Load Data
 df = pd.read_excel('harga_mobil_baru.xlsx')
 
@@ -79,29 +79,33 @@ if st.sidebar.button('🔍 Hitung Selisih Harga'):
 
                 col1, col2 = st.columns(2)
 
-               with col1:
+                with col1:
                     st.markdown(f"""
-                    <p style='font-size: 20px;'><strong>Model Series:</strong> {selected_model_series}</p>
-                    <p style='font-size: 20px;'><strong>Varian:</strong> {selected_varian}</p>
-                    <p style='font-size: 20px;'><strong>Lokasi 1:</strong> {selected_lokasi1}</p>
-                    <p style='font-size: 22px;'><strong>Harga Lokasi 1:</strong> 🏷️ <strong>Rp {price1:,.0f}</strong></p>
+                        <p style='font-size: 20px;'><strong>Model Series:</strong> {selected_model_series}</p>
+                        <p style='font-size: 20px;'><strong>Varian:</strong> {selected_varian}</p>
+                        <p style='font-size: 20px;'><strong>Lokasi 1:</strong> {selected_lokasi1}</p>
+                        <p style='font-size: 22px;'><strong>Harga Lokasi 1:</strong> 🏷️ <strong>Rp {price1:,.0f}</strong></p>
                     """, unsafe_allow_html=True)
 
                 with col2:
-                     st.markdown(f"""
-                    <p style='font-size: 20px;'><strong>Lokasi 2:</strong> {selected_lokasi2}</p>
-                    <p style='font-size: 22px;'><strong>Harga Lokasi 2:</strong> 🏷️ <strong>Rp {price2:,.0f}</strong></p>
-                    <p style='font-size: 22px;'><strong>Selisih Harga Absolut:</strong> 💰 <strong>Rp {absolute_price_difference:,.0f}</strong></p>
+                    st.markdown(f"""
+                        <p style='font-size: 20px;'><strong>Lokasi 2:</strong> {selected_lokasi2}</p>
+                        <p style='font-size: 22px;'><strong>Harga Lokasi 2:</strong> 🏷️ <strong>Rp {price2:,.0f}</strong></p>
+                        <p style='font-size: 22px;'><strong>Selisih Harga Absolut:</strong> 💰 <strong>Rp {absolute_price_difference:,.0f}</strong></p>
                     """, unsafe_allow_html=True)
 
-            if percentage_price_difference != float('inf'):
-                    st.markdown(f"<p style='font-size: 22px;'><strong>Selisih Persentase:</strong> 📈 {percentage_price_difference:.2f}%</p>", unsafe_allow_html=True)
-            else:
-                st.markdown("<p style='font-size: 22px;'><strong>Selisih Persentase:</strong> 🔁 Tidak terdefinisi (Harga Lokasi 1 = 0)</p>", unsafe_allow_html=True)
-
+                if percentage_price_difference != float('inf'):
+                    st.markdown(
+                        f"<p style='font-size: 22px;'><strong>Selisih Persentase:</strong> 📈 {percentage_price_difference:.2f}%</p>",
+                        unsafe_allow_html=True
+                    )
+                else:
+                    st.markdown(
+                        "<p style='font-size: 22px;'><strong>Selisih Persentase:</strong> 🔁 Tidak terdefinisi (Harga Lokasi 1 = 0)</p>",
+                        unsafe_allow_html=True
+                    )
             else:
                 st.warning(f"⚠️ Data tidak ditemukan untuk kombinasi tersebut di {selected_lokasi1} atau {selected_lokasi2}.")
 
         except Exception as e:
             st.error(f"❌ Terjadi kesalahan: {e}")
-
