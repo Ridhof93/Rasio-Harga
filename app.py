@@ -1,8 +1,9 @@
 import streamlit as st
 import pandas as pd
-import ipywidgets as widgets
-from IPython.display import display
 import numpy as np
+
+st.title('Perbandingan Harga Mobil Baru Antar Lokasi')
+st.write('Pilih model, varian, dan dua lokasi untuk melihat selisih harga OTR.')
 
 st.title('Perbandingan Harga Mobil Baru Antar Lokasi')
 st.write('Pilih model, varian, dan dua lokasi untuk melihat selisih harga OTR.')
