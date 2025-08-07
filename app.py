@@ -77,11 +77,12 @@ if st.sidebar.button('🔍 Hitung Selisih Harga'):
                 else:
                     percentage_price_difference = float('inf') if price2 != 0 else 0
 
-                col1, col2 = st.columns(2)
+                # Tampilkan dalam 3 kolom
+                col1, col2, col3 = st.columns(3)
 
                 with col1:
                     st.markdown(f"""
-                        <p style='font-size: 20px;'><strong>Model Series:</strong> {selected_model_series}</p>
+                        <p style='font-size: 20px;'><strong>Model:</strong> {selected_model_series}</p>
                         <p style='font-size: 20px;'><strong>Varian:</strong> {selected_varian}</p>
                         <p style='font-size: 20px;'><strong>Lokasi 1:</strong> {selected_lokasi1}</p>
                         <p style='font-size: 22px;'><strong>Harga Lokasi 1:</strong> 🏷️ <strong>Rp {price1:,.0f}</strong></p>
@@ -89,8 +90,14 @@ if st.sidebar.button('🔍 Hitung Selisih Harga'):
 
                 with col2:
                     st.markdown(f"""
+                        <p style='font-size: 20px;'><strong>Model:</strong> {selected_model_series}</p>
+                        <p style='font-size: 20px;'><strong>Varian:</strong> {selected_varian}</p>
                         <p style='font-size: 20px;'><strong>Lokasi 2:</strong> {selected_lokasi2}</p>
                         <p style='font-size: 22px;'><strong>Harga Lokasi 2:</strong> 🏷️ <strong>Rp {price2:,.0f}</strong></p>
+                    """, unsafe_allow_html=True)
+
+                with col3:
+                    st.markdown(f"""
                         <p style='font-size: 22px;'><strong>Selisih Harga Absolut:</strong> 💰 <strong>Rp {absolute_price_difference:,.0f}</strong></p>
                     """, unsafe_allow_html=True)
 
