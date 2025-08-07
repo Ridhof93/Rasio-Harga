@@ -5,9 +5,6 @@ import numpy as np
 st.title('Perbandingan Harga Mobil Baru Antar Lokasi')
 st.write('Pilih model, varian, dan dua lokasi untuk melihat selisih harga OTR.')
 
-st.title('Perbandingan Harga Mobil Baru Antar Lokasi')
-st.write('Pilih model, varian, dan dua lokasi untuk melihat selisih harga OTR.')
-
 # Load Data
 df = pd.read_excel('harga_mobil_baru.xlsx')
 
